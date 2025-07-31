@@ -1,4 +1,5 @@
 package com.ssscfw.nandemod.utils;
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,6 +12,7 @@ import java.util.Map;
 public class Alldata {
     public static Map<String, Enchantment> enchantments = new HashMap<String, Enchantment>();
     public static Map<String, Item> items = new HashMap<String, Item>();
+    public static Map<String, Block> blocks = new HashMap<String, Block>();
 
     public static void addStoredEnchantment(ItemStack itemStack, Enchantment ench, int level)
     {

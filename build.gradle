@@ -19,7 +19,12 @@ buildscript {
     }
 }
 
+
 apply plugin: 'forge'
+
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 version = "1.0"
 group= "com.ssscfw.nandemod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -28,6 +33,12 @@ archivesBaseName = "nandemod"
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "data"
+}
+
+repositories {
+    maven {
+        url "https://www.cursemaven.com"
+    }
 }
 
 dependencies {
@@ -44,6 +55,11 @@ dependencies {
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    implementation "curse.maven:slashblade-241596:2705970"
+    implementation "curse.maven:enchantchanger-enchantment-changing-system-237295:2502962"
+    //implementation "curse.maven:potionextension-230023:2241196"
+    // runtime fileTree(dir: 'libs', include: '*.jar')
+
 
 }
 
@@ -74,5 +90,11 @@ tasks.withType(JavaCompile) {
 task printEncoding {
     doLast {
         println "Default encoding: " + System.getProperty("file.encoding")
+    }
+}
+
+jar {
+    manifest {
+        attributes 'FMLCorePluginContainsFMLMod': true
     }
 }

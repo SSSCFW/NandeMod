@@ -1,5 +1,15 @@
 enchantment.Experience=経験
 enchantment.Repair=自動修復
 enchantment.RangeAttack=範囲攻撃
+enchantment.APDrop=AP増加
 
 item.spawner_upgrader.name=スポナーアップグレーダー
+item.magnet_exp.name=経験値磁石
+item.magnet_item.name=アイテム磁石
+item.magnet_all.name=結合磁石
+item.slashblade_venus.name=妖刀「Venus」
+item.slashblade_yamato2.name=真・魔剣「閻魔刀」
+item.slashblade_yamato2.desc=This is Power!
+
+container.materializer2=マテリアライザー2
+tile.blockMaterializer2.name=マテリアライザー2
