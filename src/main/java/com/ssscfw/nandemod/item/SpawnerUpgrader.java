@@ -1,9 +1,13 @@
 package com.ssscfw.nandemod.item;
 
+import java.util.List;
+
 import com.ssscfw.nandemod.NandeMod;
 import com.ssscfw.nandemod.tile.TileEntityUpgradeSpawner;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -21,6 +25,14 @@ public class SpawnerUpgrader extends Item {
         setMaxStackSize(64);
         setCreativeTab(NandeMod.tabNandemod);
         GameRegistry.registerItem(this, name);
+    }
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean p_77624_4_) {
+        list.add("§7スポナーに対して右クリックすると、");
+        list.add("§7湧き速度、同時湧き数、動作範囲が強化される。");
+        list.add("§7アップグレードは1回まで可能。");
     }
 
     @Override

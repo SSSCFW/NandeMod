@@ -1,0 +1,15 @@
+package com.ssscfw.nandemod.network;
+
+import com.ssscfw.nandemod.NandeMod;
+
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
+
+public class PacketHandler {
+    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(NandeMod.MODID.toLowerCase());
+
+    public static void init() {
+        INSTANCE.registerMessage(ExpBankPacket.Handler.class, ExpBankPacket.class, 0, Side.SERVER);
+    }
+}

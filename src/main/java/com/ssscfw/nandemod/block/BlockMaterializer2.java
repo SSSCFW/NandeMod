@@ -2,6 +2,7 @@ package com.ssscfw.nandemod.block;
 
 import com.ssscfw.nandemod.NandeMod;
 import com.ssscfw.nandemod.tile.EcTileEntityMaterializer2;
+import com.ssscfw.nandemod.utils.Constants;
 
 import ak.EnchantChanger.ExtendedPlayerData;
 import ak.EnchantChanger.block.EcBlockMaterializer;
@@ -43,7 +44,7 @@ public class BlockMaterializer2 extends EcBlockMaterializer {
     @Override
     public boolean func_149727_a(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         if (ConfigurationUtils.difficulty < 2 || this.checkCost(par5EntityPlayer)) {
-            par5EntityPlayer.openGui(NandeMod.instance, 0, par1World, par2, par3, par4);
+            par5EntityPlayer.openGui(NandeMod.instance, Constants.GUI_ID_MATERIALIZER2, par1World, par2, par3, par4);
         }
 
         ExtendedPlayerData.get(par5EntityPlayer).setLimitGaugeValue(0);

@@ -2,6 +2,7 @@ package com.ssscfw.nandemod.utils;
 
 import com.ssscfw.nandemod.NandeMod;
 
+import buildcraft.BuildCraftBuilders;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.flammpfeil.slashblade.ItemSlashBladeNamed;
 import mods.flammpfeil.slashblade.RecipeAwakeBlade;
@@ -58,6 +59,50 @@ public class Recipe {
         'I', new ItemStack(Alldata.items.get("magnet_item")),
         'E', new ItemStack(Alldata.items.get("magnet_exp")),
         'D', new ItemStack(Blocks.diamond_block));
+    GameRegistry.addRecipe(new ItemStack(Alldata.items.get("compact_crystal")),
+        "GGG",
+        "GEG",
+        "GTG",
+        'G', new ItemStack(Blocks.glass),
+        'E', new ItemStack(Items.ender_eye),
+        'T', new ItemStack(Items.ghast_tear)
+        );
+    GameRegistry.addRecipe(new ItemStack(Alldata.items.get("dragon_eye")),
+        "CCC",
+        "CEC",
+        "CCC",
+        'C', new ItemStack(Alldata.items.get("compact_crystal")),
+        'E', new ItemStack(Items.ender_eye)
+        );
+    GameRegistry.addRecipe(new ItemStack(Alldata.items.get("compact_rotten_flesh")),
+        "RRR",
+        "RRR",
+        "RRR",
+        'R', new ItemStack(Items.rotten_flesh)
+        );
+    GameRegistry.addRecipe(new ItemStack(Alldata.items.get("blue_apple")),
+        "LLL",
+        "LAL",
+        "LLL",
+        'L', new ItemStack(Items.dye, 1, 4), // Blue dye
+        'A', new ItemStack(Items.apple)
+        );
+    GameRegistry.addRecipe(new ItemStack(Alldata.items.get("blue_apple"), 1, 1),
+        "LLL",
+        "LAL",
+        "LLL",
+        'L', new ItemStack(Blocks.lapis_block),
+        'A', new ItemStack(Items.apple)
+        );
+    GameRegistry.addRecipe(new ItemStack(Alldata.blocks.get("old_filler")),
+        "OOO",
+        "OFO",
+        "OOO",
+        'O', new ItemStack(Blocks.obsidian),
+        'F', new ItemStack(BuildCraftBuilders.fillerBlock)
+        );
+
+
 
     String nameTrue = "flammpfeil.slashblade.named.yamato";
     ItemStack yamato = GameRegistry.findItemStack(SlashBlade.modid, nameTrue, 1);

@@ -57,8 +57,10 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     implementation "curse.maven:slashblade-241596:2705970"
     implementation "curse.maven:enchantchanger-enchantment-changing-system-237295:2502962"
+    implementation "curse.maven:ic2-classic-242942:5750794"
+    implementation "curse.maven:buildcraft-61811:6240755"
     //implementation "curse.maven:potionextension-230023:2241196"
-    // runtime fileTree(dir: 'libs', include: '*.jar')
+    runtime fileTree(dir: 'libs', include: '*.jar')
 
 
 }

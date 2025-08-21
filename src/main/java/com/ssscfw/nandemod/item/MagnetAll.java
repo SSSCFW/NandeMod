@@ -67,6 +67,9 @@ public class MagnetAll extends Item {
             if (player.isSneaking()) {
                 toggle = !toggle;
                 NBTTagCompound tag = item.getTagCompound();
+                if (tag == null) {
+                    tag = new NBTTagCompound();
+                }
                 tag.setBoolean("toggle", toggle);
                 item.setTagCompound(tag);
                 item.setItemDamage(toggle ? 1 : 0);
