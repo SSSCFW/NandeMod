@@ -17,12 +17,19 @@ public class TickEvent {
         EntityPlayer player = event.player;
         if (player.ticksExisted % 20 == 0) {
             for (ItemStack itemStack : player.inventory.mainInventory) {
-                if (itemStack != null && itemStack.isItemEnchanted()) {
-                    int level = EnchantmentHelper.getEnchantmentLevel(Alldata.enchantments.get("repair").effectId, itemStack);
-                    if (level > 0 && itemStack.getMaxItemUseDuration() > 0 && itemStack.getItemDamage() > 0) {
-                        itemStack.setItemDamage(itemStack.getItemDamage() - level);
-                    }
-                }
+                repairItem(itemStack);
+            }
+            for (ItemStack itemStack : player.inventory.armorInventory) {
+                repairItem(itemStack);
+            }
+        }
+    }
+
+    public static void repairItem(ItemStack itemstack) {
+        if (itemstack != null && itemstack.isItemEnchanted()) {
+            int level = EnchantmentHelper.getEnchantmentLevel(Alldata.enchantments.get("repair").effectId, itemstack);
+            if (level > 0 && itemstack.getItemDamage() > 0) {
+                itemstack.setItemDamage(itemstack.getItemDamage() - level);
             }
         }
     }
