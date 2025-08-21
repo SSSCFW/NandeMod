@@ -20,8 +20,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class MagnetAll extends Item {
-    private boolean toggle = false;
-    private boolean init = false;
     protected IIcon[] iicon;
     
     String name = "magnet_all";
@@ -56,6 +54,14 @@ public class MagnetAll extends Item {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean p_77624_4_) {
+        NBTTagCompound tag = itemstack.getTagCompound();
+        boolean toggle = false;
+        if (tag == null) {
+            tag = new NBTTagCompound();
+        }
+        else {
+            toggle = tag.getBoolean("toggle");
+        }
         list.add("§eスニーク + 右クリック§7で自動回収の切り替え");
         list.add("§7自動回収: " + (toggle ? "§aOn" : "§cOff"));
     }
@@ -63,37 +69,39 @@ public class MagnetAll extends Item {
     @Override
     public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player)
     {
-        if (!world.isRemote) {
-            if (player.isSneaking()) {
-                toggle = !toggle;
-                NBTTagCompound tag = item.getTagCompound();
-                if (tag == null) {
-                    tag = new NBTTagCompound();
-                }
-                tag.setBoolean("toggle", toggle);
-                item.setTagCompound(tag);
-                item.setItemDamage(toggle ? 1 : 0);
-                player.addChatMessage(new net.minecraft.util.ChatComponentText("§e磁石自動回収 : " + (toggle ? "§a有効" : "§c無効")));
-                return item;
+        if (player.isSneaking()) {
+            NBTTagCompound tag = item.getTagCompound();
+            boolean toggle = true;
+            if (tag == null) {
+                tag = new NBTTagCompound();
             }
-            pickup(player, world);
+            else {
+                toggle = !tag.getBoolean("toggle");
+            }
+            tag.setBoolean("toggle", toggle);
+            item.setTagCompound(tag);
+            item.setItemDamage(toggle ? 1 : 0);
+            if (!world.isRemote) {
+                player.addChatMessage(new net.minecraft.util.ChatComponentText("§e磁石自動回収 : " + (toggle ? "§a有効" : "§c無効")));
+            }
+            return item;
         }
+        pickup(player, world);
         return item;
     }
 
     @Override
     public void onUpdate(ItemStack item, World world, Entity entity, int slot, boolean isSelected) {
-        if (!world.isRemote) {
-            if (!init) {
-                NBTTagCompound tag = item.getTagCompound();
-                if (tag == null) {
-                    tag = new NBTTagCompound();
-                }
-                toggle = tag.getBoolean("toggle");
-                item.setTagCompound(tag);
-                init = true;
+        if (entity instanceof EntityPlayer) {
+            NBTTagCompound tag = item.getTagCompound();
+            boolean toggle = false;
+            if (tag == null) {
+                tag = new NBTTagCompound();
             }
-            if (toggle && entity instanceof EntityPlayer) {
+            else {
+                toggle = tag.getBoolean("toggle");
+            }
+            if (toggle) {
                 EntityPlayer player = (EntityPlayer) entity;
                 pickup(player, world);
             }
