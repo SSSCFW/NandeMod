@@ -56,28 +56,37 @@ public class MagnetAll extends Item {
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean p_77624_4_) {
         NBTTagCompound tag = itemstack.getTagCompound();
         boolean toggle = false;
+        int range = 5;
         if (tag == null) {
             tag = new NBTTagCompound();
         }
         else {
             toggle = tag.getBoolean("toggle");
+            range = tag.getInteger("range");
         }
         list.add("§eスニーク + 右クリック§7で自動回収の切り替え");
         list.add("§7自動回収: " + (toggle ? "§aOn" : "§cOff"));
+        list.add("§7範囲(半径): " + range);
     }
 
     @Override
     public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player)
     {
+        NBTTagCompound tag = item.getTagCompound();
+        boolean toggle = true;
+        int range = 5;
+        if (tag == null) {
+            tag = new NBTTagCompound();
+        }
+        else {
+            toggle = !tag.getBoolean("toggle");
+            range = tag.getInteger("range");
+            if (range == 0) {
+                tag.setInteger("range", 5);
+                item.setTagCompound(tag);
+            }
+        }
         if (player.isSneaking()) {
-            NBTTagCompound tag = item.getTagCompound();
-            boolean toggle = true;
-            if (tag == null) {
-                tag = new NBTTagCompound();
-            }
-            else {
-                toggle = !tag.getBoolean("toggle");
-            }
             tag.setBoolean("toggle", toggle);
             item.setTagCompound(tag);
             item.setItemDamage(toggle ? 1 : 0);
@@ -86,7 +95,18 @@ public class MagnetAll extends Item {
             }
             return item;
         }
-        pickup(player, world);
+
+        range++;
+        if (range > 21) {
+            range = 5;
+        }
+        tag.setInteger("range", range);
+        item.setTagCompound(tag);
+        if (!world.isRemote) {
+            player.addChatMessage(new net.minecraft.util.ChatComponentText("§e磁石範囲(半径) : §a" + range));
+        }
+
+        pickup(player, world, range);
         return item;
     }
 
@@ -95,22 +115,24 @@ public class MagnetAll extends Item {
         if (entity instanceof EntityPlayer) {
             NBTTagCompound tag = item.getTagCompound();
             boolean toggle = false;
+            int range = 5;
             if (tag == null) {
                 tag = new NBTTagCompound();
             }
             else {
                 toggle = tag.getBoolean("toggle");
+                range = tag.getInteger("range");
             }
             if (toggle) {
                 EntityPlayer player = (EntityPlayer) entity;
-                pickup(player, world);
+                pickup(player, world, range);
             }
         }
     }
 
     @SuppressWarnings("unchecked")
-    private void pickup(EntityPlayer player, World world) {
-        int radius = 5; // Define the radius for magnet effect
+    private void pickup(EntityPlayer player, World world, int range) {
+        int radius = range;
         List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, player.boundingBox.expand(radius, radius, radius));
         for (EntityItem dropitem : items) {
             dropitem.delayBeforeCanPickup = 0;
