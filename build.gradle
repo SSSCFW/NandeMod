@@ -97,6 +97,7 @@ task printEncoding {
 
 jar {
     manifest {
+        attributes FMLCorePlugin: 'nancore.asm.NanCorePlugin'
         attributes 'FMLCorePluginContainsFMLMod': true
     }
 }
