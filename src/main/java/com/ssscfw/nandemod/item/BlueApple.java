@@ -60,17 +60,17 @@ public class BlueApple extends ItemFood {
     {
         if (!world.isRemote)
         {
-            player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 20*60, 0));
+            player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 20*120, 0));
         }
 
         if (itemstack.getItemDamage() > 0)
         {
             if (!world.isRemote)
             {
-                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 2));
-                player.addPotionEffect(new PotionEffect(Potion.resistance.id, 6000, 0));
-                player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 6000, 0));
-                player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 6000, 2));
+                player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 800, 2));
+                player.addPotionEffect(new PotionEffect(Potion.resistance.id, 8000, 0));
+                player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 8000, 0));
+                player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 8000, 2));
             }
         }
         else
