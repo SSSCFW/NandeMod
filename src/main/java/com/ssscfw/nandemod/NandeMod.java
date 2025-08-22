@@ -24,6 +24,8 @@ import com.ssscfw.nandemod.proxy.InitProxy;
 import com.ssscfw.nandemod.utils.Recipe;
 import com.ssscfw.nandemod.utils.RegisterSlashBlade;
 import com.ssscfw.nandemod.utils.RegisterUtils;
+import ic2.core.block.generator.tileentity.TileEntityBaseGenerator;
+import ic2.core.block.machine.tileentity.TileEntityElectrolyzer;
 
 @Mod(modid = NandeMod.MODID, version = NandeMod.VERSION, dependencies = "required-after:flammpfeil.slashblade;required-after:EnchantChanger;required-after:IC2;required-after:BuildCraft|Core")
 public class NandeMod

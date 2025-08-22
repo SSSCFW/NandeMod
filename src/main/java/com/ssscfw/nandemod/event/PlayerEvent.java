@@ -34,7 +34,7 @@ public class PlayerEvent {
                     livingEntity.worldObj.spawnEntityInWorld(xpOrb);
                 }
                 if (apLevel > 0) {
-                    int ap = rand.nextInt(apLevel) + 1;
+                    int ap = rand.nextInt(apLevel) * 2 + 1;
                     EcEntityApOrb apOrb = new EcEntityApOrb(livingEntity.worldObj, livingEntity.posX, livingEntity.posY, livingEntity.posZ, ap);
                     livingEntity.worldObj.spawnEntityInWorld(apOrb);
                 }

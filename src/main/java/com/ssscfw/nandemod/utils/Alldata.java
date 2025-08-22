@@ -17,6 +17,7 @@ public class Alldata {
     public static Map<String, Enchantment> enchantments = new HashMap<String, Enchantment>();
     public static Map<String, Item> items = new HashMap<String, Item>();
     public static Map<String, Block> blocks = new HashMap<String, Block>();
+    
 
     public static int intervalTorch = 4;
 

@@ -31,9 +31,9 @@ public class RegisterUtils {
     public static void registerEnchantments() {
         // id, weight
         Alldata.enchantments.put("experience", new Experience(100, 5, "Experience"));
-        Alldata.enchantments.put("repair", new Repair(101, 0, "Repair"));
+        Alldata.enchantments.put("repair", new Repair(101, 1, "Repair"));
         Alldata.enchantments.put("range_attack", new RangeAttack(102, 1, "RangeAttack"));
-        Alldata.enchantments.put("apdrop", new APDrop(103, 0, "APDrop"));
+        Alldata.enchantments.put("apdrop", new APDrop(103, 1, "APDrop"));
     }
 
     public static void registerItems() {
